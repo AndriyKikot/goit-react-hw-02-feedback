@@ -1,18 +1,16 @@
 import { Component } from 'react';
 
+import './App.css';
+
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
 import Section from './Section';
 import Notification from './Notification';
 
-import './App.css';
+const INITIAL_STATE = { good: 0, neutral: 0, bad: 0 };
 
 class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+  state = { ...INITIAL_STATE };
 
   handleFeedback = nameBtn => {
     this.setState({ [nameBtn]: this.state[nameBtn] + 1 });
@@ -33,6 +31,7 @@ class App extends Component {
     const options = Object.keys(this.state).map(key => key);
     const { good, neutral, bad } = this.state;
     const totalFeedBack = this.countTotalFeedback();
+
     return (
       <div className="App">
         <Section title={'Please leave feedback'}>
