@@ -1,21 +1,24 @@
 import PropTypes from 'prop-types';
 import s from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+const FeedbackButton = ({ feedback, onLeaveFeedback }) => {
   return (
-    <div>
-      {options.map(feedback => (
-        <button
-          className={s.btn}
-          type="button"
-          key={feedback}
-          name={feedback}
-          onClick={() => onLeaveFeedback(feedback)}
-        >
-          {feedback}
-        </button>
-      ))}
-    </div>
+    <button
+      className={s.btn}
+      type="button"
+      key={feedback}
+      name={feedback}
+      onClick={() => onLeaveFeedback(feedback)}
+    >
+      {feedback}
+    </button>
+  );
+};
+
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  // return (options.map(option => <FeedbackButton feedback={option} onLeaveFeedback={onLeaveFeedback} />));
+  return options.map(option =>
+    FeedbackButton({ feedback: option, onLeaveFeedback }),
   );
 };
 
